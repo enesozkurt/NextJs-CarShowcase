@@ -1,7 +1,7 @@
 import { Hero, SearchBar, CustomFilter, CarCard, ShowMore } from '@/components'
 import { fuels, yearsOfProduction } from '@/constants';
 import { fetchCars } from '@/utils'
-import Image from 'next/image'
+import { v4 as uuidv4 } from 'uuid';
 
 export default async function Home({ searchParams }) {
   const allcars = await fetchCars({
@@ -33,7 +33,7 @@ export default async function Home({ searchParams }) {
           <section>
             <div className='home__cars-wrapper'>
               {allcars?.map((car) => (
-                <CarCard car={car} />
+                <CarCard key={uuidv4()} car={car} />
               ))}
             </div>
             <ShowMore 
